@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<div id="nav-container">
+	<nav>
+		<ul id="pages">
+			{% assign pages = site.pages | sort: 'position' %}
+		    {% for page in pages %}
+		    	<li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+		    {% endfor %}
+		</ul>
+	</nav>
+</div>
+
+<div id="project-container">
+	{{ content }}
+</div>
