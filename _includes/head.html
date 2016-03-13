@@ -1,0 +1,19 @@
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.title %}{{ page.title | append: " | Andrew Healy" }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+  <link rel="stylesheet" href="{{ "/css/normalize.min.css" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" media="screen">
+  <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Arvo'>
+  <link rel="stylesheet" href="{{ "/css/style.css" | prepend: site.baseurl }}">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="{{ "/js/modernizr-2.8.3-respond-1.4.2.min.js" | prepend: site.baseurl }}"></script>
+
+</head>

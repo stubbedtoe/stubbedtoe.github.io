@@ -1,0 +1,74 @@
+{% assign projects = site.projects | sort: 'title' %}
+
+{% for project in projects %}
+  
+  {% assign previous = forloop.index0 | minus: 1 | modulo: forloop.length %}
+  {% assign next = forloop.index0 | plus: 1 | modulo: forloop.length %}
+
+  {% capture class_string %}block {{ project.categories | join: ' ' }}{% endcapture %}
+  {% if include.active == 'all' %}
+  	{% assign blur = false %}
+  {% else %}
+  	{% assign blur = true %}
+  	{% for cat in project.categories %}
+  	  {% if cat == include.active %}
+  	  	{% assign blur = false %}
+  	  	{% break %}
+  	  {% endif %}
+  	{% endfor %}
+  {% endif %}
+
+  <div id="{{ project.id }}" data-pos="{{ forloop.index }}"
+  class=  "{% if blur %}{{ class_string | prepend: 'blur ' }}{% else %}{{ class_string }}{% endif %}">
+    <a href="{{ project.url }}">
+        <span{% if project.long_title %} class="long" {% endif %}>{{ project.title }}</span>
+        {% capture thumburl %}{{ site.amazon_url }}/{{ project.id }}/thumb/{{ project.thumb }}{% endcapture %}
+        <img src="{{ thumburl | prepend: site.baseurl }}">
+    </a>
+  </div>
+
+{% endfor %}
+
+<div id="ajax" class="exterior"><button type="button" id="close-ajax">Close</button>
+
+  <div id="fotorama" class="fotorama"
+        data-keyboard="true" 
+        data-arrows="true"
+        data-click="true"
+        data-swipe="true"
+        data-trackpad="false"
+        data-loop="true" 
+        data-width="100%"
+        data-ratio="600/400"
+        data-allowfullscreen="true"
+        data-transition="slide"
+        data-auto="false"
+        data-fit="contain"
+        >
+  {% for project in site.projects %}
+
+    {% if project.video %}
+      {% for vid in project.video %}
+          <a class="{{ project.id }}"  data-type="video" href="{{ vid.a }}"></a>
+      {% endfor %}    
+    {% endif %}
+
+    {% for img in project.images %}
+      {% assign parts = img | split: '#' %}
+     <!--- {% capture imgurl %}/img/{{ project.id }}/{{ parts | first }}{% endcapture %} -->
+     {% capture imgurl %}{{ site.amazon_url }}/{{ project.id }}/medium/{{ parts | first }}{% endcapture %}
+     {% capture fullurl %}{{ site.amazon_url }}/{{ project.id }}/full/{{ parts | first }}{% endcapture %}
+      {% if parts.size > 1 %}
+        <a class="{{ project.id }}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}" data-caption="{{ parts | last }}"></a>
+      {% else %}
+        <a class="{{ project.id }}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}"></a>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  </div>
+
+  <div id="interior"></div>
+
+</div>
+

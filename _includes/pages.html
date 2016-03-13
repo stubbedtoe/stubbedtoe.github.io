@@ -1,0 +1,18 @@
+<!-- ignore the category pages -->
+<ul id="pages">
+	{% assign pages = site.pages | sort: 'position' %}
+    {% for page in pages %}
+    	{% assign show = true %}
+    	<!---
+    	{% for cat in site.data.categories %}
+			{% if cat.cat == page.title %}
+				{% assign show = false %}
+				{% break %}
+			{% endif %}
+		{% endfor %}
+	-->
+		{% if show %}
+    		<li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+    	{% endif %}
+    {% endfor %}
+</ul>
