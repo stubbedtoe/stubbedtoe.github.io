@@ -3,17 +3,20 @@ import urllib, urllib2, json, os, requests, sys
 url = 'https://api.kraken.io/v1/url'
 root =  '/media/andrew/ROCKET/fullsize_images' # '/Volumes/ROCKET/fullsize_images'
 
+with open("../configuration.json") as f:
+    config = json.load(f)
+
 params = {
 	'auth': {
-		'api_key' : 'c71a5fa11f4a1498f079ace0ed283c7a',
-		'api_secret' : '43a2733db40757be892ac5eb584e28909e2f2e1d'
+		'api_key' : config['kraken_api_key'],
+		'api_secret' : config['kraken_api_secret']
 	},
 	'wait' : True,
 	'lossy' : True,
 	'dev': False,
 	's3_store':{
-		'key': 'AKIAICRGAX43XMH5DZFQ',
-		'secret': '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',
+		'key': config['s3_key'],
+		'secret': config['s3_secret'],
 		'bucket': 'portfolio-ahealy',
 		'region': 'eu-west-1'
 	}
