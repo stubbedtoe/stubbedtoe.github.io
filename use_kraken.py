@@ -3,7 +3,7 @@ import urllib, urllib2, json, os, requests, sys
 url = 'https://api.kraken.io/v1/url'
 root =  '/media/andrew/ROCKET/fullsize_images' # '/Volumes/ROCKET/fullsize_images'
 
-with open("../configuration.json") as f:
+with open("configuration.json") as f:
     config = json.load(f)
 
 params = {
