@@ -1,7 +1,6 @@
 ---
 ---
 
-# horrible global variables
 $filter_links = null
 $blocks = null
 $initial = true
@@ -26,14 +25,7 @@ toggle_blur_active = (obj, to_add, to_remove) ->
     obj.addClass to_add unless obj.hasClass to_add 
 
 toggle_ajax = (obj=null) ->
-    ###
-    if opacity is 1.0 and is_one_column
-        $ajax.show()
-    else if is_one_column
-        $ajax.hide()
-    else
-        $ajax.animate {opacity: opacity }, 200#, left: left}, 200
-    ###
+    
     if overlay_showing
         if one_column()
             $ajax.after(selected_block)
@@ -59,10 +51,6 @@ and_or = (is_and) ->
 
 any = (array) -> true in array
 all = (array) -> false not in array
-
-#lass = (a,b) -> if a < b then a else b
-
-#min = (array) -> return (x for x in array )
 
 one_column = -> document.body.clientWidth < 480
 mobile = -> document.body.clientWidth < 768
@@ -219,24 +207,15 @@ enter_fullscreen = -> fotorama.requestFullScreen()
 # resize stuff
 
 on_resize = ->
-    #previous = is_one_column
+
     is_mobile = mobile()
     is_one_column = one_column()
-    ###
-    if not previous and is_one_column
-        $ajax.css {'display': 'none', 'left': '0%', 'opacity': 1.0}
-    else if previous and not is_one_column
-        $ajax.css {'display': 'inline', 'left': '100%', 'opacity': 0.0}
-    ###
-
-    #if (is_mobile and not current) or (not is_mobile and current)
-    #   is_mobile = current
-        #console.log "changed to #{current}"
+   
 
 $(window).resize ->
  if TO
     clearTimeout(TO);
- TO = setTimeout on_resize, 200 #200 is time in miliseconds
+ TO = setTimeout on_resize, 200 #time in milliseconds
 
 ################
 
@@ -300,14 +279,7 @@ $ ->
         $(this).replaceWith $(this).children()
         id = parent.attr 'id'
         block_data[id] = []
-        ###
-        offset = parseInt(parent.attr 'data-offset')
-        num = parseInt(parent.attr 'data-images')
-        to = offset+num
-        console.log "offset: #{offset}, num: #{num} to: #{to}"
-        block_data[id] = fotorama_data[offset..to]
-        true
-        ###
+       
 
     $('#fotorama a').each (index) ->
         id = $(this).attr 'class'
@@ -335,8 +307,7 @@ $ ->
 
 
     $('#fotorama').on 'fotorama:show ' + 'fotorama:fullscreenenter ' + 'fotorama:fullscreenexit',  (e, fotorama, extra) ->
-        #if e.type is 'fotorama:show' and not fullscreen_open and one_column() and overlay_showing
-            #enter_fullscreen()
+        
         if e.type is 'fotorama:fullscreenenter'
             fullscreen_open = true
         if e.type is 'fotorama:fullscreenexit'
