@@ -20,6 +20,7 @@ block_data = {}
 text_data = {}
 pos_to_id = {}
 id_to_pos = {}
+pos_to_elem = {}
 fullscreen_open = false
 prev_url = null
 next_url = null
@@ -242,8 +243,7 @@ $(document).mouseup (e) ->
 
 
 $('.block').click -> 
-    overlay_showing = toggle_ajax $(this)
-    current_overlay = show_ajax $(this)
+    project_requested $(this)
       
 $('#prev-ajax').click -> 
     temp = pos_to_id[id_to_pos[current_overlay]]['prev']
@@ -301,10 +301,12 @@ $ ->
         $(this).replaceWith $(this).children()
         id = parent.attr 'id'
         block_data[id] = []
+        pos = (parseInt (parent.attr 'data-pos'))
+        id_to_pos[id] = pos
         data = {'id':id, 'prev': (parseInt (parent.attr 'data-prev')), 'next': (parseInt (parent.attr 'data-next'))}
-        pos_to_id[(parseInt (parent.attr 'data-pos'))] = data
-        id_to_pos[id] = (parseInt (parent.attr 'data-pos'))
-        console.log (pos_to_id[(parseInt (parent.attr 'data-pos'))])
+        pos_to_id[pos]= data
+        pos_to_elem[pos] = parent
+        #console.log (pos_to_id[(parseInt (parent.attr 'data-pos'))])
        
 
     $('#fotorama a').each (index) ->
