@@ -261,6 +261,7 @@ body > #container {
 }
 
 .no-touch .block:hover img, .no-js .block:hover img  {
+
     cursor: pointer;
     webkit-filter:grayscale(100%);
     filter:grayscale(100%);
@@ -269,6 +270,7 @@ body > #container {
 }
 
 .no-touch .block:hover span, .no-js .block:hover span{
+
     display: block;
     cursor: pointer;
 }
@@ -520,6 +522,7 @@ footer{
     }
 }
 
+
 @media only screen and (min-width: 768px) {
 
     /* three column - fixed menu left - 2 column portfolio */
@@ -615,8 +618,6 @@ footer{
         }
 	}
 
-
-
     .js nav{
         #and, #or{
             display: inline;
@@ -634,6 +635,7 @@ footer{
             color: $bg;
         }
     }    
+
 
     .blur.block{
       background: $bg; 

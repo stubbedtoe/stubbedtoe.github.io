@@ -20,8 +20,13 @@ block_data = {}
 text_data = {}
 pos_to_id = {}
 id_to_pos = {}
+
 fullscreen_open = false
 $current_showing = null
+
+pos_to_elem = {}
+fullscreen_open = false
+
 
 toggle_blur_active = (obj, to_add, to_remove) ->
     obj.removeClass to_remove
@@ -60,6 +65,7 @@ one_column = -> Modernizr.mq '(max-width: 480px)'#document.body.clientWidth < 48
 mobile = -> Modernizr.mq '(max-width: 768px)'
 two_column = -> Modernizr.mq '(max-width: 1140px)'# and not one_column()#document.body.clientWidth < 1140 and not one_column()
 three_column = -> Modernizr.mq '(min-width: 1140px)'#document.body.clientWidth >= 1140
+
 
 blur_unblur = ->
 
@@ -198,15 +204,12 @@ show_ajax = (obj) ->
     else 
         $current_showing.next().next().after($ajax)
 
-
-
     $ajax.show()
     return id
 
 enter_fullscreen = -> fotorama.requestFullScreen() 
 
 project_requested =  (obj) ->
-
     try
         current_overlay = show_ajax obj
     catch error
@@ -224,6 +227,7 @@ prev_next = (which) ->
     
     catch error
         overlay_showing = toggle_ajax()
+
 
 
 #############
@@ -261,6 +265,7 @@ $(document).mouseup (e) ->
 
 
 $('.block').click -> 
+
     overlay_showing = toggle_ajax $(this)
     $current_showing = $(this)
     project_requested $(this)
@@ -270,6 +275,7 @@ $('#prev-ajax').click ->
 
 $('#next-ajax').click -> 
     prev_next 'next'
+
 
 $('#close-ajax').click -> overlay_showing = toggle_ajax()
 
@@ -317,6 +323,7 @@ $ ->
         id_to_pos[id] = pos
         data = {'id':id, 'prev': (parseInt (parent.attr 'data-prev')), 'next': (parseInt (parent.attr 'data-next'))}
         pos_to_id[pos]= data
+
         #console.log (pos_to_id[(parseInt (parent.attr 'data-pos'))])
        
 
