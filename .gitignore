@@ -1,5 +1,5 @@
 _site
-_projects/no_publish
+_projects/no_publish/*
 .sass-cache
 .jekyll-metadata
 configuration.json
