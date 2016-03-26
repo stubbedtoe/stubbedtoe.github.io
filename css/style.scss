@@ -260,7 +260,7 @@ body > #container {
     }
 }
 
-.no-touch .block:hover img {
+.no-touch .block:hover img, .no-js .block:hover img  {
     cursor: pointer;
     webkit-filter:grayscale(100%);
     filter:grayscale(100%);
@@ -268,7 +268,7 @@ body > #container {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);   
 }
 
-.no-touch .block:hover span{
+.no-touch .block:hover span, .no-js .block:hover span{
     display: block;
     cursor: pointer;
 }
@@ -513,6 +513,11 @@ footer{
     #ajax #interior{ 
         padding: 0 2em;
     }
+
+    #tech ul li{
+        display: inline;
+        float: left;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -612,25 +617,23 @@ footer{
 
 
 
-    
+    .js nav{
+        #and, #or{
+            display: inline;
+            padding: .3em;
+            font-size: .8em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        #and.active, #or.active, #and:hover, #or:hover{
+            box-shadow: 0px 0px 0px 2px $overlay-blue;
+        }
 
-    .js #and, .js #or{
-        display: inline;
-        padding: .3em;
-        font-size: .8em;
-        text-transform: uppercase;
-        cursor: pointer;
-    }
-    
-    #and.active, #or.active, #and:hover, #or:hover{
-        box-shadow: 0px 0px 0px 2px $overlay-blue;
-    }
-
-    #and:hover, #or:hover, #and.active:hover, #or.active:hover{
-        background-color: $overlay-blue;
-        color: $bg;
-    }
-    
+        #and:hover, #or:hover, #and.active:hover, #or.active:hover{
+            background-color: $overlay-blue;
+            color: $bg;
+        }
+    }    
 
     .blur.block{
       background: $bg; 

@@ -20,10 +20,8 @@ block_data = {}
 text_data = {}
 pos_to_id = {}
 id_to_pos = {}
-pos_to_elem = {}
 fullscreen_open = false
-prev_url = null
-next_url = null
+$current_showing = null
 
 toggle_blur_active = (obj, to_add, to_remove) ->
     obj.removeClass to_remove
@@ -57,10 +55,11 @@ and_or = (is_and) ->
 any = (array) -> true in array
 all = (array) -> false not in array
 
-one_column = -> document.body.clientWidth < 480
-mobile = -> document.body.clientWidth < 768
-two_column = -> document.body.clientWidth < 1140 and not one_column()
-three_column = -> document.body.clientWidth >= 1140
+one_column = -> Modernizr.mq '(max-width: 480px)'#document.body.clientWidth < 480
+#mobile = -> document.body.clientWidth < 768
+mobile = -> Modernizr.mq '(max-width: 768px)'
+two_column = -> Modernizr.mq '(max-width: 1140px)'# and not one_column()#document.body.clientWidth < 1140 and not one_column()
+three_column = -> Modernizr.mq '(min-width: 1140px)'#document.body.clientWidth >= 1140
 
 blur_unblur = ->
 
@@ -167,11 +166,16 @@ show_ajax = (obj) ->
                 $interior.append response.find ".exterior #tech"
                 $ajax.addClass id
 
-    position =  parseInt obj.attr 'data-pos'
+    position =  parseInt $current_showing.attr 'data-pos'
+    if not position
+        throw "position is Nan"
     last = position is $blocks.size()
     columns = if one_column() then 1 else if two_column() then 2 else 3
     $visi_blocks = $('.block:visible')
 
+    console.log ('position: '+position)
+    console.log ('columns: '+columns)
+    #console.log ('current_showing: '+current_showing)
     # where to place the ajax element?
 
     #very particular case dealing with invisible blocks
@@ -179,20 +183,20 @@ show_ajax = (obj) ->
         position = $visi_blocks.index(obj) + 1
         last = position is $visi_blocks.size()
         unless position % 2 is 0 or last
-            obj.nextAll('.block:visible').first().after($ajax)
+            $current_showing.nextAll('.block:visible').first().after($ajax)
     # replace block for one-column
     else if columns is 1
-        obj.after($ajax)
-        selected_block = obj.detach()
+        $current_showing.after($ajax)
+        selected_block = $current_showing.detach()
     # last in row
     else if (columns is 2 and position % 2 is 0) or (columns is 3 and position % 3 is 0) or last
-        obj.after($ajax)
+        $current_showing.after($ajax)
     # first in row - 2-column OR middle in row - 3-column
     else if columns is 2 or (columns is 3 and position % 3 is 2) 
-        obj.next().after($ajax)
+        $current_showing.next().after($ajax)
     # first in row 3-column
     else 
-        obj.next().next().after($ajax)
+        $current_showing.next().next().after($ajax)
 
 
 
@@ -202,10 +206,24 @@ show_ajax = (obj) ->
 enter_fullscreen = -> fotorama.requestFullScreen() 
 
 project_requested =  (obj) ->
-    next_url = obj.attr 'data-next'
-    prev_url = obj.attr 'data-prev'
-    overlay_showing = toggle_ajax obj
-    current_overlay = show_ajax obj
+
+    try
+        current_overlay = show_ajax obj
+    catch error
+        console.log 'error caught: '+error
+        overlay_showing = toggle_ajax()
+    $(window).resize()
+
+prev_next = (which) ->
+    try
+        temp = pos_to_id[id_to_pos[current_overlay]][which]
+        target_id = pos_to_id[temp]['id']
+        $target = $('#'+target_id)
+        console.log (which + ' called ' + target_id)
+        project_requested $target
+    
+    catch error
+        overlay_showing = toggle_ajax()
 
 
 #############
@@ -243,21 +261,15 @@ $(document).mouseup (e) ->
 
 
 $('.block').click -> 
+    overlay_showing = toggle_ajax $(this)
+    $current_showing = $(this)
     project_requested $(this)
       
 $('#prev-ajax').click -> 
-    temp = pos_to_id[id_to_pos[current_overlay]]['prev']
-    target_id = pos_to_id[temp]['id']
-    $target = $('#'+target_id)
-    console.log ('prev called ' + target_id)
-    project_requested $target
+    prev_next 'prev'       
 
 $('#next-ajax').click -> 
-    temp = pos_to_id[id_to_pos[current_overlay]]['next']
-    target_id = pos_to_id[temp]['id']
-    $target = $('#'+target_id)
-    console.log ('next called ' + target_id)
-    project_requested $target
+    prev_next 'next'
 
 $('#close-ajax').click -> overlay_showing = toggle_ajax()
 
@@ -305,7 +317,6 @@ $ ->
         id_to_pos[id] = pos
         data = {'id':id, 'prev': (parseInt (parent.attr 'data-prev')), 'next': (parseInt (parent.attr 'data-next'))}
         pos_to_id[pos]= data
-        pos_to_elem[pos] = parent
         #console.log (pos_to_id[(parseInt (parent.attr 'data-pos'))])
        
 
