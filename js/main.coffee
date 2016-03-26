@@ -18,7 +18,11 @@ current_overlay = false
 selected_block = false
 block_data = {}
 text_data = {}
+pos_to_id = {}
+id_to_pos = {}
 fullscreen_open = false
+prev_url = null
+next_url = null
 
 toggle_blur_active = (obj, to_add, to_remove) ->
     obj.removeClass to_remove
@@ -160,8 +164,6 @@ show_ajax = (obj) ->
                 $interior.append response.find ".exterior #medium"
                 $interior.append response.find ".exterior #description"
                 $interior.append response.find ".exterior #tech"
-                next_url = (response.find ".exterior #next").attr 'href'
-                prev_url = (response.find ".exterior #prev").attr 'href'
                 $ajax.addClass id
 
     position =  parseInt obj.attr 'data-pos'
@@ -198,6 +200,13 @@ show_ajax = (obj) ->
 
 enter_fullscreen = -> fotorama.requestFullScreen() 
 
+project_requested =  (obj) ->
+    next_url = obj.attr 'data-next'
+    prev_url = obj.attr 'data-prev'
+    overlay_showing = toggle_ajax obj
+    current_overlay = show_ajax obj
+
+
 #############
 # interaction
 #############
@@ -231,11 +240,24 @@ $(document).mouseup (e) ->
     overlay_showing = toggle_ajax()
   return
 
-$('.block').click -> 
 
+$('.block').click -> 
     overlay_showing = toggle_ajax $(this)
     current_overlay = show_ajax $(this)
-        
+      
+$('#prev-ajax').click -> 
+    temp = pos_to_id[id_to_pos[current_overlay]]['prev']
+    target_id = pos_to_id[temp]['id']
+    $target = $('#'+target_id)
+    console.log ('prev called ' + target_id)
+    project_requested $target
+
+$('#next-ajax').click -> 
+    temp = pos_to_id[id_to_pos[current_overlay]]['next']
+    target_id = pos_to_id[temp]['id']
+    $target = $('#'+target_id)
+    console.log ('next called ' + target_id)
+    project_requested $target
 
 $('#close-ajax').click -> overlay_showing = toggle_ajax()
 
@@ -279,6 +301,10 @@ $ ->
         $(this).replaceWith $(this).children()
         id = parent.attr 'id'
         block_data[id] = []
+        data = {'id':id, 'prev': (parseInt (parent.attr 'data-prev')), 'next': (parseInt (parent.attr 'data-next'))}
+        pos_to_id[(parseInt (parent.attr 'data-pos'))] = data
+        id_to_pos[id] = (parseInt (parent.attr 'data-pos'))
+        console.log (pos_to_id[(parseInt (parent.attr 'data-pos'))])
        
 
     $('#fotorama a').each (index) ->
@@ -316,7 +342,7 @@ $ ->
     
     $foto = $('#fotorama').fotorama() #initialise
     fotorama = $foto.data 'fotorama' #grab api object
-    fotorama.destroy()
+    
     $ajax.css 'position', 'relative'
     $ajax.css 'left', 0
     $ajax.hide()
@@ -325,6 +351,7 @@ $ ->
 
     if home_page
         $filter_links.removeAttr 'href'
+        fotorama.destroy()
     else
         $('#and').hide()
         $('#or').hide()

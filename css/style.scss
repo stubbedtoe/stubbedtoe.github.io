@@ -336,6 +336,23 @@ body > #container {
         display: inline;
         float: right;
     }
+    //nav icons
+    .fa{
+        display: inline;
+        width: 1.5em;
+        padding: 0.5em;
+        float: left;
+        cursor: pointer;
+    }
+
+    #close-ajax{
+        float: right;
+    }
+
+    .fa:hover{
+        color: white;
+        background-color: $overlay-blue
+    }
 
      a.cat-button{
         display: inline;
