@@ -42,6 +42,7 @@ exclude:
   - configuration.json
   - upload_files.py
   - process_images
+  - contact.md
 gems:
   - jekyll-coffeescript
 #  - susy
