@@ -7,6 +7,8 @@ permalink: /about/
 
 <div id="my-links">
 
+	<p>Welcome to my website: I hope that it provides an interesting introduction to work and projects I have been involved with over the past few years. Whether working with tactile or virtual media, I take pride in the craft of <em>making</em>. I enjoy expressing ideas in many different ways, often primarily visually. I also get satisfaction in creating <em>tools</em> to assist others in communicating their ideas. Much of the work I do is involved with information <em>in translation</em> - from digital to physical or through a numerical / optical lens.</p>
+
 	<h3>Education</h3>
 
 	<strong class="underline">Degrees &amp; Diplomas</strong>
@@ -40,6 +42,31 @@ permalink: /about/
 
 	<br/>
 
+	<h3>Awards</h3>
+
+	<div class="half-left">
+		{% for award in site.data.awards %}
+			{% assign which = forloop.index0 | modulo: 2 %}
+				{% if which == 0 %}
+				<p>
+					<strong>{{ award.title }}</strong>, {{ award.date }}
+				</p>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="half-right">
+		{% for award in site.data.awards %}
+			{% assign which = forloop.index0 | modulo: 2 %}
+				{% if which == 1 %}
+				<p>
+					<strong>{{ award.title }}</strong>, {{ award.date }}
+				</p>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+	<br />
 	
 
 	<h3>Workshops &amp; Presentations (<a href="http://www.cs.nuim.ie/~ahealy" alt="nuim page">more</a>)</h3>
@@ -51,7 +78,35 @@ permalink: /about/
 				{{ time.where }} <em>{{ time.when }}</em><br />
 			{% endfor %} 
 		</p>
-	{% endfor %}	
+	{% endfor %}
+
+	<br />
+
+	<h3>Selected Exhibitions</h3>
+
+	<div class="half-left">
+	{% for exhib in site.data.exhibitions %}
+		{% assign which = forloop.index0 | modulo: 2 %}
+			{% if which == 0 %}
+				<p>
+					<strong>{{ exhib.title }}</strong> {{ exhib.venue }},
+					<em>{{ exhib.where }}, {{ exhib.when }}</em>
+				</p>
+			{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="half-right">
+	{% for exhib in site.data.exhibitions %}
+		{% assign which = forloop.index0 | modulo: 2 %}
+			{% if which == 1 %}
+				<p>
+					<strong>{{ exhib.title }}</strong> {{ exhib.venue }},
+					<em>{{ exhib.where }}, {{ exhib.when }}</em>
+				</p>
+			{% endif %}
+		{% endfor %}
+	</div>
 	
 
 </div> <!-- end my-links -->

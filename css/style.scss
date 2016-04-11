@@ -387,6 +387,7 @@ body > #container {
     margin: 1%;
     max-width: 45em;
     margin-top: 0;
+    h3 {clear: both;}
     p{ font-family: $sans; }
     a{
         color: $pink;
