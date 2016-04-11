@@ -1,27 +1,28 @@
-- what: Beginning to Program through Processing
-  when: October 2014
-  where: Rua Red Art Centre, Tallaght, Co. Dublin
-- what: Introduction to HTML & CSS
-  when: October 2014
-  where: Rua Red Art Centre, Tallaght, Co. Dublin
-- what: Stitch'n'Glitch Workshop
-  when: April 2014
-  where: Science Gallery, Dublin
-- what: Stitch'n'Glitch Workshops & Demonstrations
-  when: January 2014
-  where: Chester Beatty Library, Dublin
-- what: Stitch'n'Glitch Workshop (Teen's Club)
-  when: January 2014
-  where: Chester Beatty Library, Dublin
-- what: Stitch'n'Glitch Workshop
-  when: July 2013
-  where: Mini-Maker Faire @ Science Gallery, Dublin
-- what: Stitch'n'Glitch Workshop
-  when: February 2013
-  where: Recyclism Hacklab, Dublin
-- what: Stitch'n'Glitch Workshop
-  when: January 2013
-  where: Satellite Studios, Dublin
-- what: Stitch'n'Glitch Workshop
-  when: November 2012
-  where: Satellite Studios, Dublin
+--- 
+Beginning to Program Through Processing:
+  - 
+   when: October 2014 
+   where: Rua Red Art Centre, Tallaght, Co. Dublin
+Introduction to HTML & CSS: 
+  - 
+    when: October 2014 
+    where: Rua Red Art Centre, Tallaght, Co. Dublin
+Stitch'n'Glitch Workshops: 
+  -
+    when: April 2014 
+    where: Science Gallery, Dublin
+  - 
+   when: January 2014 
+   where: Chester Beatty Library, Dublin
+  - 
+   when: July 2013 
+   where: Mini-Maker Faire @ Science Gallery, Dublin
+  - 
+   when: February 2013 
+   where: Recyclism Hacklab, Dublin
+  - 
+   when: January 2013 
+   where: Satellite Studios, Dublin
+  - 
+   when: November 2012 
+   where: Satellite Studios, Dublin

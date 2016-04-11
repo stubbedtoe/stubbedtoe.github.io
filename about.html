@@ -6,13 +6,14 @@ permalink: /about/
 ---
 
 <div id="my-links">
+
 	<h3>Education</h3>
 
 	<strong class="underline">Degrees &amp; Diplomas</strong>
 	{% for cert in site.data.education %}
 		{% if cert.type == 'major' %}
 		<p>
-			<em>{{ cert.year }}</em> <strong> {{ cert.title }} </strong>{{ cert.inst }}
+			<em>{{ cert.year }}</em> <strong> {{ cert.title }} </strong><br />{{ cert.inst }}
 		</p>
 		{% endif %}
 	{% endfor %}
@@ -21,7 +22,7 @@ permalink: /about/
 	{% for cert in site.data.education %}
 		{% if cert.type == 'minor' %}
 		<p>
-			<em>{{ cert.year }}</em> <strong> {{ cert.title }} </strong>{{ cert.inst }}
+			<em>{{ cert.year }}</em> <strong> {{ cert.title }} </strong><br />{{ cert.inst }}
 		</p>
 		{% endif %}
 	{% endfor %}
@@ -39,13 +40,18 @@ permalink: /about/
 
 	<br/>
 
+	
+
 	<h3>Workshops &amp; Presentations (<a href="http://www.cs.nuim.ie/~ahealy" alt="nuim page">more</a>)</h3>
 
-	{% for pres in site.data.workshops-presentations %}
+	{% for type in site.data.workshops-presentations %}
 		<p>
-			<strong>{{ pres.what }}</strong> {{ pres.where }} <em>{{ pres.when }}</em>
+			<strong>{{ type[0] }}</strong><br />
+			{% for time in type[1] %}
+				{{ time.where }} <em>{{ time.when }}</em><br />
+			{% endfor %} 
 		</p>
 	{% endfor %}	
-
+	
 
 </div> <!-- end my-links -->
