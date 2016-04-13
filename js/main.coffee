@@ -190,12 +190,8 @@ show_ajax = (obj) ->
         last = position is $visi_blocks.size()
         unless position % 2 is 0 or last
             $current_showing.nextAll('.block:visible').first().after($ajax)
-    # replace block for one-column
-    else if columns is 1
-        $current_showing.after($ajax)
-        selected_block = $current_showing.detach()
     # last in row
-    else if (columns is 2 and position % 2 is 0) or (columns is 3 and position % 3 is 0) or last
+    else if columns is 1 or (columns is 2 and position % 2 is 0) or (columns is 3 and position % 3 is 0) or last
         $current_showing.after($ajax)
     # first in row - 2-column OR middle in row - 3-column
     else if columns is 2 or (columns is 3 and position % 3 is 2) 

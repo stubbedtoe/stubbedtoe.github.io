@@ -386,7 +386,7 @@ body > #container {
     color: $text;
     margin: 1%;
     max-width: 45em;
-    margin-top: 0;
+    margin-top: -10px;
     h3 {clear: both;}
     p{ font-family: $sans; }
     a{
@@ -399,11 +399,18 @@ body > #container {
     .underline{
         text-decoration: underline;
     }
+    hr.blueline{
+        display: block;
+        clear: both;
+        border: 1px solid $overlay-blue;
+    }
 }
 
 .half-left, .half-right{
     display: inline-block;
     min-width: 200px;
+    margin: 0;
+    padding: 0;
     a{
         color: $text;
         display: block;
@@ -511,6 +518,8 @@ footer{
         margin: 1%;//0 0 3% 3%;
         float: left;
     }
+
+    .half-left, .half-right{ margin: 0;}
 
     #ajax{
         margin: 1%;

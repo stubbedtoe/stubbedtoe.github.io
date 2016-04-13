@@ -9,6 +9,8 @@ permalink: /about/
 
 	<p>Welcome to my website: I hope that it provides an interesting introduction to work and projects I have been involved with over the past few years. Whether using tactile or virtual media, I take pride in the craft of <em>making</em>. I enjoy expressing ideas in many different ways, often primarily visually. I also get satisfaction in creating <em>tools</em> to assist others in communicating their ideas. Much of the work I do is involved with information <em>in translation</em> - from digital to physical or through a numerical / optical lens.</p>
 
+	<hr class="blueline" />
+
 	<h3>Education</h3>
 
 	<strong class="underline">Degrees &amp; Diplomas</strong>
@@ -29,7 +31,7 @@ permalink: /about/
 		{% endif %}
 	{% endfor %}
 
-	<br/>
+	<hr class="blueline" />
 
 	<h3>Work</h3>
 	{% for work in site.data.work %}
@@ -37,10 +39,12 @@ permalink: /about/
 			<em>{{ work.year }}</em> <strong>{{ work.title }}</strong> ({{ work.boss }})<br /><br />
 			{{ work.desc }}
 		</p>
-		<hr />
+		{% if forloop.last == false %}
+			<hr />
+		{% endif %}
 	{% endfor %}
 
-	<br/>
+	<hr class="blueline" />
 
 	<h3>Awards</h3>
 
@@ -66,7 +70,7 @@ permalink: /about/
 		{% endfor %}
 	</div>
 
-	<br />
+	<hr class="blueline" />
 	
 
 	<h3>Workshops &amp; Presentations (<a href="http://www.cs.nuim.ie/~ahealy" alt="nuim page">more</a>)</h3>
@@ -80,7 +84,7 @@ permalink: /about/
 		</p>
 	{% endfor %}
 
-	<br />
+	<hr class="blueline" />
 
 	<h3>Selected Exhibitions</h3>
 
