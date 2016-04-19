@@ -7,6 +7,7 @@ url: "http://stubbedtoe.github.io" # the base hostname & protocol for your site
 github_username:  stubbedtoe
 amazon_url: http://s3-eu-west-1.amazonaws.com/portfolio-ahealy
 tumblr_username: virtualsurface
+blog_address: http://virtualsurface.tumblr.com/
 permalink: pretty
 excerpt_separator: ""
 collections:
@@ -42,7 +43,8 @@ exclude:
   - configuration.json
   - upload_files.py
   - process_images
-  - contact.md
+  - contact.*
+  - blog.*
 gems:
   - jekyll-coffeescript
 #  - susy

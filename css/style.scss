@@ -422,7 +422,10 @@ body > #container {
     } 
 }
 
-
+iframe{
+    width: 100%; 
+    height: 100em;
+}
 
 footer{
     width: 100%;
@@ -479,6 +482,8 @@ footer{
             fill: transparentize($text, 0.3);
         }
     }
+
+
 
 }
 
