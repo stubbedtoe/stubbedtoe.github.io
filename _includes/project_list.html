@@ -32,7 +32,7 @@
     <a href="{{ project.url }}">
         <span{% if project.long_title %} class="long" {% endif %}>{{ project.title }}</span>
         {% capture thumburl %}{{ site.amazon_url }}/{{ project.id }}/thumb/{{ project.thumb }}{% endcapture %}
-        <img src="{{ thumburl | prepend: site.baseurl }}">
+        <img src="{{ thumburl }}">
     </a>
   </div>
 
