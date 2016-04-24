@@ -33,7 +33,7 @@ defaults:
       path: "projects"
     values:
       long_title: false
-      thumb: "thumb.jpg"
+      thumb: thumb.jpg
       layout: page
 # Build settings
 markdown: kramdown
