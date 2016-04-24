@@ -20,7 +20,7 @@ collections:
 defaults:
   -
     scope:
-      path: "filter"
+      path: "/filter/"
     values:
       layout: project_menu
   -
@@ -30,7 +30,7 @@ defaults:
       active: "all"
   -
     scope:
-      path: "projects"
+      path: "/projects/"
     values:
       long_title: false
       thumb: thumb.jpg
