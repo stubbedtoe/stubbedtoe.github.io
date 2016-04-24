@@ -31,8 +31,12 @@
   class=  "{% if blur %}{{ class_string | prepend: 'blur ' }}{% else %}{{ class_string }}{% endif %}">
     <a href="{{ project.url }}">
         <span{% if project.long_title %} class="long" {% endif %}>{{ project.title }}</span>
-        {% capture thumburl %}{{ site.amazon_url }}/{{ project.id }}/thumb/{{ project.thumb }}{% endcapture %}
-        <img src="{{ thumburl }}">
+        {% if project.thumb %}
+          {% capture thumburl %}{{ site.amazon_url }}/{{ project.id }}/thumb/{{ project.thumb }}{% endcapture %}
+          <img src="{{ thumburl }}">
+        {% else %}
+          <img src="{{ site.amazon_url }}/{{ project.id }}/thumb/thumb.jpg">
+        {% endif %}
     </a>
   </div>
 
