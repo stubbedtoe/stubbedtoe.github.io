@@ -7,7 +7,9 @@ layout: default
 		<ul id="pages">
 			{% assign pages = site.pages | sort: 'position' %}
 		    {% for page in pages %}
+					{% if page.position %}
 		    	<li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+					{% endif %}
 		    {% endfor %}
 		</ul>
 	</nav>
