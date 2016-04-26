@@ -121,6 +121,8 @@ parse_query_string = ->
         overlay_showing = toggle_ajax project
         $current_showing = project
         project_requested project
+    else
+        window.location.hash = ''
 
 
 get_top_offset  = (obj) ->
