@@ -115,6 +115,14 @@ parse_query_string = ->
 
     switch_link $('#'+category_name), category_name for category_name in requested
 
+    project = if window.location.hash.length then $(window.location.hash) else false
+    if project
+        window.scroll(0, project.scrollTop())
+        overlay_showing = toggle_ajax project
+        $current_showing = project
+        project_requested project
+
+
 get_top_offset  = (obj) ->
 
     #from https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
@@ -199,6 +207,8 @@ show_ajax = (obj) ->
     # first in row 3-column
     else 
         $current_showing.next().next().after($ajax)
+
+    window.location.hash = '#project='+id
 
     $ajax.show()
     return id
