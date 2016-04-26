@@ -116,7 +116,7 @@ parse_query_string = ->
     switch_link $('#'+category_name), category_name for category_name in requested
 
     project = if window.location.hash.length then $(window.location.hash) else false
-    if project
+    if project.length > 0
         window.scroll(0, project.scrollTop())
         overlay_showing = toggle_ajax project
         $current_showing = project
