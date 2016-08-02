@@ -19,8 +19,8 @@
      {% if include.images %}
           {% for img in include.images %}
           	{% assign parts = img | split: '#' %}
-          	{% capture imgurl %}{{ site.amazon_url }}/{{ page.id }}/medium/{{ parts | first }}{% endcapture %}
-               {% capture fullurl %}{{ site.amazon_url }}/{{ page.id }}/full/{{ parts | first }}{% endcapture %}
+          	{% capture imgurl %}{{ site.url }}/img/{{ page.id | | remove_first:'/projects/'}}/medium/{{ parts | first }}{% endcapture %}
+               {% capture fullurl %}{{ site.url }}/img/{{ page.id | remove_first:'/projects/'}}/full/{{ parts | first }}{% endcapture %}
           	{% if parts.size > 1 %}
           		<img src="{{ imgurl }}" data-caption="{{ parts | last }}" data-full="{{ fullurl }}" />
           	{% else %}
