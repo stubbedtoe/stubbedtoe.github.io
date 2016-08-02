@@ -32,7 +32,7 @@
     <a href="{{ project.url }}">
         <span{% if project.long_title %} class="long" {% endif %}>{{ project.title }}</span>
         {% if project.thumb %}
-          {% capture thumburl %}{{ site.base_url }}img/{{ project.id }}/thumb/{{ project.thumb }}{% endcapture %}
+          {% capture thumburl %}{{ site.url }}/img/{{ project.id }}/thumb/{{ project.thumb }}{% endcapture %}
           <img src="{{ thumburl }}">
         {% else %}
           <img src="{{ site.base_url }}img/{{ project.id }}/thumb/thumb.jpg">
@@ -72,8 +72,8 @@
     {% for img in project.images %}
       {% assign parts = img | split: '#' %}
      <!--- {% capture imgurl %}/img/{{ project.id }}/{{ parts | first }}{% endcapture %} -->
-     {% capture imgurl %}{{ site.base_url }}img/{{ project.id }}/medium/{{ parts | first }}{% endcapture %}
-     {% capture fullurl %}{{ site.base_url }}img/{{ project.id }}/full/{{ parts | first }}{% endcapture %}
+     {% capture imgurl %}{{ site.url }}img/{{ project.id }}/medium/{{ parts | first }}{% endcapture %}
+     {% capture fullurl %}{{ site.url }}img/{{ project.id }}/full/{{ parts | first }}{% endcapture %}
       {% if parts.size > 1 %}
         <a class="{{ project.id }}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}" data-caption="{{ parts | last }}"></a>
       {% else %}
