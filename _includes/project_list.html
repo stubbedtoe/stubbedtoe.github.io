@@ -31,12 +31,12 @@
   class=  "{% if blur %}{{ class_string | prepend: 'blur ' }}{% else %}{{ class_string }}{% endif %}">
     <a href="{{ project.url }}">
         <span{% if project.long_title %} class="long" {% endif %}>{{ project.title }}</span>
-        {% if project.thumb %}
-          {% capture thumburl %}{{ site.url }}/img/{{ project.id | remove_first:'/projects/' }}/thumb/{{ project.thumb }}{% endcapture %}
+       <!--- {% if project.thumb %} -->
+          {% capture thumburl %}{{ site.url }}/img/{{ project.id | remove_first:'/projects/' }}/thumb/{% if project.thumb %}{{ project.thumb }}{% else %}thumb.jpg{% endif %}{% endcapture %}
           <img src="{{ thumburl }}">
-        {% else %}
-          <img src="{{ site.baseurl }}img/{{ project.id | remove_first:'/projects/'}}/thumb/thumb.jpg">
-        {% endif %}
+       <!--- {% else %}
+          <img src="{{ site.url }}/img/{{ project.id | remove_first:'/projects/'}}/thumb/thumb.jpg">
+        {% endif %} -->
     </a>
   </div>
 
@@ -72,8 +72,8 @@
     {% for img in project.images %}
       {% assign parts = img | split: '#' %}
      <!--- {% capture imgurl %}/img/{{ project.id }}/{{ parts | first }}{% endcapture %} -->
-     {% capture imgurl %}{{ site.url }}img/{{ project.id  | remove_first:'/projects/'}}/medium/{{ parts | first }}{% endcapture %}
-     {% capture fullurl %}{{ site.url }}img/{{ project.id  | remove_first:'/projects/'}}/full/{{ parts | first }}{% endcapture %}
+     {% capture imgurl %}{{ site.url }}/img/{{ project.id  | remove_first:'/projects/'}}/medium/{{ parts | first }}{% endcapture %}
+     {% capture fullurl %}{{ site.url }}/img/{{ project.id  | remove_first:'/projects/'}}/full/{{ parts | first }}{% endcapture %}
       {% if parts.size > 1 %}
         <a class="{{ project.id  | remove_first:'/projects/'}}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}" data-caption="{{ parts | last }}"></a>
       {% else %}
