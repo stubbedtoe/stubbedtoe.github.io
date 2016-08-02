@@ -27,15 +27,15 @@
   	{% endfor %}
   {% endif %}
 
-  <div id="{{ project.id  | remove_first:'/projects'}}" data-pos="{{ forloop.index }}" data-next="{{ next }}" data-prev="{{ previous }}"
+  <div id="{{ project.id  | remove_first:'/projects/'}}" data-pos="{{ forloop.index }}" data-next="{{ next }}" data-prev="{{ previous }}"
   class=  "{% if blur %}{{ class_string | prepend: 'blur ' }}{% else %}{{ class_string }}{% endif %}">
     <a href="{{ project.url }}">
         <span{% if project.long_title %} class="long" {% endif %}>{{ project.title }}</span>
         {% if project.thumb %}
-          {% capture thumburl %}{{ site.url }}/img/{{ project.id | remove_first:'/projects' }}/thumb/{{ project.thumb }}{% endcapture %}
+          {% capture thumburl %}{{ site.url }}/img/{{ project.id | remove_first:'/projects/' }}/thumb/{{ project.thumb }}{% endcapture %}
           <img src="{{ thumburl }}">
         {% else %}
-          <img src="{{ site.baseurl }}img/{{ project.id | remove_first:'/projects'}}/thumb/thumb.jpg">
+          <img src="{{ site.baseurl }}img/{{ project.id | remove_first:'/projects/'}}/thumb/thumb.jpg">
         {% endif %}
     </a>
   </div>
@@ -65,19 +65,19 @@
 
     {% if project.video %}
       {% for vid in project.video %}
-          <a class="{{ project.id  | remove_first:'/projects'}}"  data-type="video" href="{{ vid.a }}"></a>
+          <a class="{{ project.id  | remove_first:'/projects/'}}"  data-type="video" href="{{ vid.a }}"></a>
       {% endfor %}    
     {% endif %}
 
     {% for img in project.images %}
       {% assign parts = img | split: '#' %}
      <!--- {% capture imgurl %}/img/{{ project.id }}/{{ parts | first }}{% endcapture %} -->
-     {% capture imgurl %}{{ site.url }}img/{{ project.id  | remove_first:'/projects'}}/medium/{{ parts | first }}{% endcapture %}
-     {% capture fullurl %}{{ site.url }}img/{{ project.id  | remove_first:'/projects'}}/full/{{ parts | first }}{% endcapture %}
+     {% capture imgurl %}{{ site.url }}img/{{ project.id  | remove_first:'/projects/'}}/medium/{{ parts | first }}{% endcapture %}
+     {% capture fullurl %}{{ site.url }}img/{{ project.id  | remove_first:'/projects/'}}/full/{{ parts | first }}{% endcapture %}
       {% if parts.size > 1 %}
-        <a class="{{ project.id  | remove_first:'/projects'}}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}" data-caption="{{ parts | last }}"></a>
+        <a class="{{ project.id  | remove_first:'/projects/'}}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}" data-caption="{{ parts | last }}"></a>
       {% else %}
-        <a class="{{ project.id  | remove_first:'/projects'}}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}"></a>
+        <a class="{{ project.id  | remove_first:'/projects/'}}"  data-type="image" href="{{ imgurl }}" data-full="{{ fullurl }}"></a>
       {% endif %}
     {% endfor %}
   
