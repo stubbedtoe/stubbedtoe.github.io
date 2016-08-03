@@ -31,12 +31,12 @@
   class=  "{% if blur %}{{ class_string | prepend: 'blur ' }}{% else %}{{ class_string }}{% endif %}">
     <a href="{{ project.url }}">
         <span{% if project.long_title %} class="long" {% endif %}>{{ project.title }}</span>
-       <!--- {% if project.thumb %} -->
-          {% capture thumburl %}{{ site.url }}/img/{{ project.id | remove_first:'/projects/' }}/thumb/{% if project.thumb %}{{ project.thumb }}{% else %}thumb.jpg{% endif %}{% endcapture %}
+       {% if project.thumb %}
+          {% capture thumburl %}{{ site.url }}/img/{{ project.id | remove_first:'/projects/' }}/thumb/{{ project.thumb }}{% endcapture %}
           <img src="{{ thumburl }}">
-       <!--- {% else %}
+       {% else %}
           <img src="{{ site.url }}/img/{{ project.id | remove_first:'/projects/'}}/thumb/thumb.jpg">
-        {% endif %} -->
+        {% endif %}
     </a>
   </div>
 
