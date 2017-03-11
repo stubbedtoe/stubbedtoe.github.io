@@ -4,3 +4,4 @@ _projects/no_publish/*
 .jekyll-metadata
 configuration.json
 portfolio-site.git
+node_modules
