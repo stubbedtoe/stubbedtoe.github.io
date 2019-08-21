@@ -1,10 +1,18 @@
 - title: Frontend Developer
+  boss: Deloitte Digital UK
+  year: 2018-present
+  desc: >
+        I am currently working as a front-end developer for the <a href="https://www.deloittedigital.co.uk/" title="Deloitte Digital">Deloitte 
+        Digital</a> consultancy studio based in Edinburgh, Scotland. In my time here I have worked with a number of public- 
+        and private- sector clients on digital transformation projects.
+- title: Frontend Developer
   boss: Assure Hedge
-  year: 2016-present
+  year: 2016-2018
   desc: >
         <a href="http://www.assurehedge.com">Assure Hedge</a> is a Dublin-based start up which helps small businesses 
-        limit their exposure to fluctuations in the foreign exchange market. My main responsibilities include user interface 
-        design of the customer-facing components, associated client-side programming, and general web design.
+        limit their exposure to fluctuations in the foreign exchange market. My main responsibilities included user interface 
+        design of the customer-facing components, associated client-side programming, and general web design. I also took
+        on business analysis and options trading roles from time-to-time.
 - title: Demonstrator/Tutor
   boss: Dept. of Computer Science, Maynooth University
   year: 2015-2016
